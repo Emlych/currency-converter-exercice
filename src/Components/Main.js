@@ -23,11 +23,15 @@ const Main = () => {
   const selectedCur = document.getElementById("currency-select");
   //l'idée sera de récupérer rates.selectedCur.value   (eg{rates.AED})
   //selectedCur.value ne rend pas la valeur sélectionnée.
+  //parce que selectedCur est null.
 
   const convertCur1 = (event) => {
-    console.log(selectedCur.options.value);
+    // console.log(selectedCur);
+    // console.log(selectedCur.options[selectedCur.selectedIndex]);
     setCur1(event.target.value);
-    setCur2(event.target.value * selectedCur.options.value);
+    setCur2(
+      event.target.value * selectedCur.options[selectedCur.selectedIndex].value
+    );
   };
   const convertCur2 = (event) => {
     setCur2(event.target.value);
