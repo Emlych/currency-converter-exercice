@@ -19,8 +19,8 @@ h1,
   align-items: baseline;
   font-size: 24px;
 }
-input {
-  width: 60%;
+input,
+select {
   background-color: #eeeeee;
   border: none;
   border-radius: 5px;
@@ -29,4 +29,11 @@ input {
   margin-right: 10px;
   margin-bottom: 20px;
   margin-top: 20px;
+}
+input {
+  width: 40%;
+}
+
+select {
+  margin-left: 10px;
 }
