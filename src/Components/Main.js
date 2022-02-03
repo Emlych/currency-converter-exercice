@@ -17,34 +17,39 @@ const Main = () => {
 
   const [cur1, setCur1] = useState(0);
   const [cur2, setCur2] = useState(0);
+  const [curType1, setCurType1] = useState("EUR");
+  const [curType2, setCurType2] = useState("USD");
 
   const currency = Object.keys(rates);
 
-  const selectedCur = document.getElementById("currency-select");
-  //l'idée sera de récupérer rates.selectedCur.value   (eg{rates.AED})
-  //selectedCur.value ne rend pas la valeur sélectionnée.
-  //parce que selectedCur est null.
+  const handleCurChange1 = (event) => {
+    console.log("currency ===>", event.target.value);
+    setCurType1(event.target.value);
+    console.log("taux de conversion ===>", rates[event.target.value]);
+  };
+  const handleCurChange2 = (event) => {
+    console.log("currency ===>", event.target.value);
+    setCurType2(event.target.value);
+    console.log("taux de conversion ===>", rates[event.target.value]);
+  };
 
   const convertCur1 = (event) => {
-    // console.log(selectedCur);
-    // console.log(selectedCur.options[selectedCur.selectedIndex]);
     setCur1(event.target.value);
-    setCur2(
-      event.target.value * selectedCur.options[selectedCur.selectedIndex].value
-    );
+    setCur2(event.target.value * rates[curType1]);
   };
   const convertCur2 = (event) => {
     setCur2(event.target.value);
-    setCur1(event.target.value * selectedCur.value);
+    setCur1(event.target.value * rates[curType2]);
   };
 
   return (
     <div className="main">
       <div className="line">
         <input type="text" value={cur1} onChange={convertCur1} />
-        <span>€</span>
         <div>
           <select
+            value={curType1}
+            onChange={handleCurChange1}
             name="currency"
             className="currencySelect"
             id="currency-select"
@@ -61,7 +66,24 @@ const Main = () => {
       </div>
       <div className="symbol">🔽 🔼</div>
       <div className="line">
-        <input type="text" value={cur2} onChange={convertCur2} /> $
+        <input type="text" value={cur2} onChange={convertCur2} />
+        <div>
+          <select
+            value={curType2}
+            onChange={handleCurChange2}
+            name="currency"
+            className="currencySelect"
+            id="currency-select"
+          >
+            {currency.map((element, index) => {
+              return (
+                <option key={index} value={element}>
+                  {element}
+                </option>
+              );
+            })}
+          </select>
+        </div>
       </div>
     </div>
   );
