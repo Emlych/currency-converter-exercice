@@ -29,47 +29,21 @@ const Main = () => {
 
   return (
     <div className="main">
-      <div className="line">
-        <input type="text" value={cur1} onChange={convertCur1} />
-        <div>
-          <select
-            value={curType1}
-            onChange={handleCurChange1}
-            name="currency"
-            className="currencySelect"
-            id="currency-select"
-          >
-            {currency.map((element, index) => {
-              return (
-                <option key={index} value={element}>
-                  {element}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-      </div>
+      <Line
+        currency={currency}
+        cur={cur1}
+        convertCur={convertCur1}
+        curType={curType1}
+        handleCurChange={handleCurChange1}
+      />
       <div className="symbol">🔽 🔼</div>
-      <div className="line">
-        <input type="text" value={cur2} onChange={convertCur2} />
-        <div>
-          <select
-            value={curType2}
-            onChange={handleCurChange2}
-            name="currency"
-            className="currencySelect"
-            id="currency-select"
-          >
-            {currency.map((element, index) => {
-              return (
-                <option key={index} value={element}>
-                  {element}
-                </option>
-              );
-            })}
-          </select>
-        </div>
-      </div>
+      <Line
+        currency={currency}
+        cur={cur2}
+        convertCur={convertCur2}
+        curType={curType2}
+        handleCurChange={handleCurChange2}
+      />
     </div>
   );
 };
